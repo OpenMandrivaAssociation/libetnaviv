@@ -6,7 +6,7 @@
 Summary:	This library completely wraps the kernel interface
 Name:		libetnaviv
 Version:	0.0.0
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://github.com/etnaviv/libetnaviv
