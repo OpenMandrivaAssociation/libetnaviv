@@ -1,17 +1,17 @@
 %define major	1
-%define libname	%mklibname etnaviv %{major}
-%define devname	%mklibname -d etnaviv
-%define snap	20150420
+%define libname	%mklibname fakedrm_etnaviv %{major}
+%define devname	%mklibname -d fakedrm_etnaviv
+%define snap	20191215
 
 Summary:	This library completely wraps the kernel interface
 Name:		libetnaviv
 Version:	0.0.0
-Release:	0.%{snap}.2
+Release:	0.%{snap}.1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://github.com/etnaviv/libetnaviv
-Source0:	%{name}-%{version}-%{snap}.tar.xz
-Source1:	headers-HAL-0.0.0-%{snap}.tar.xz
+Source0:	https://github.com/etnaviv/libetnaviv/archive/imx8.tar.gz
+Source1:	https://github.com/etnaviv/galcore_headers/archive/master.tar.gz
 
 %description
 Library for:
@@ -45,13 +45,12 @@ Provides:	%{name}-devel = %{version}-%{release}
 This package includes the development files for %{name}.
 
 %prep
-%setup -qn %{name}-%{version}-%{snap}
-tar -xvf %{SOURCE1}
+%autosetup -n %{name}-imx8 -a 1
 autoreconf -fiv
 
 %build
 %configure \
-	--with-galcore-include="$(pwd)"/headers-HAL-0.0.0-%{snap} \
+	--with-galcore-include="$(pwd)"/galcore_headers-master/include_imx8_v6.2.3.129602 \
 	--disable-static \
 
 %make
@@ -60,9 +59,9 @@ autoreconf -fiv
 %makeinstall_std
 
 %files -n %{libname}
-%{_libdir}/libetnaviv.so.%{major}*
+%{_libdir}/libfakedrm_etnaviv.so.%{major}*
 
 %files -n %{devname}
-%{_libdir}/libetnaviv.so
-%{_includedir}/etnaviv/*.h
-%{_libdir}/pkgconfig/libetnaviv.pc
+%{_libdir}/libfakedrm_etnaviv.so
+%{_includedir}/etnaviv
+%{_libdir}/pkgconfig/*.pc
