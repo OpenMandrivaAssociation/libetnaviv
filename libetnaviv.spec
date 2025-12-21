@@ -13,6 +13,11 @@ Url:		https://github.com/etnaviv/libetnaviv
 Source0:	https://github.com/etnaviv/libetnaviv/archive/imx8.tar.gz
 Source1:	https://github.com/etnaviv/galcore_headers/archive/master.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 %description
 Library for:
 a) ioctl (kernel interface) wrapping
